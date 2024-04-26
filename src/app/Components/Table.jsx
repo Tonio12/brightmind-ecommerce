@@ -11,6 +11,9 @@ const Styledtable = styled.table`
     font-weight: normal;
     font-size: 0.7rem;
   }
+  td {
+    border-top: 1px solid #fdf0d5;
+  }
 `;
 
 function Table(props) {

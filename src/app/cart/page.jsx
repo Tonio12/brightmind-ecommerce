@@ -5,6 +5,7 @@ import { styled } from "styled-components";
 import { CartContext } from "../Components/CartContext";
 import axios from "axios";
 import Table from "../Components/Table";
+import Input from "../Components/Input";
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -20,26 +21,38 @@ const Box = styled.div`
 `;
 
 const ProductInfoCell = styled.td`
-  img {
-    max-width: 150px;
-    max-height: 150px;
-  }
+  padding: 10px 0;
 `;
 
 const ProductImageBox = styled.div`
-  max-width: 150px;
-  max-height: 150px;
-  padding: 50px;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
   border-radius: 10px;
-  box-shadow: 0 0 10px #669bbc;
+  box-shadow: 0 0 10px #fdf0d5;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fdf0d5;
+  img {
+    width: 80px;
+    height: 80px;
+  }
+`;
+
+const QuantityLabel = styled.span`
+  padding: 0 3px;
 `;
 
 function page() {
-  const { cartProducts } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
   const [products, setProducts] = useState([]);
+  const [name, setName] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [landmark, setLandmark] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [email, setEmail] = useState("");
+
   useEffect(() => {
     if (cartProducts.length > 0) {
       axios.post(`/api/cart`, { ids: cartProducts }).then((response) => {
@@ -47,6 +60,21 @@ function page() {
       });
     }
   }, [cartProducts]);
+
+  const addMore = (id) => {
+    addProduct(id);
+  };
+
+  const reduceProductQuantity = (id) => {
+    removeProduct(id);
+  };
+
+  let total = 0;
+
+  for (const productId of cartProducts) {
+    const price = products.find((p) => p._id === productId)?.price || 0;
+    total += price;
+  }
 
   return (
     <ColumnsWrapper>
@@ -73,22 +101,72 @@ function page() {
                       {product.title}
                     </ProductInfoCell>
                     <td>
-                      {cartProducts.filter((id) => id === product._id).length}
+                      <button
+                        className="btn-secondary"
+                        onClick={() => reduceProductQuantity(product._id)}
+                      >
+                        -
+                      </button>
+                      <QuantityLabel>
+                        {cartProducts.filter((id) => id === product._id).length}
+                      </QuantityLabel>
+                      <button
+                        className="btn-secondary"
+                        onClick={() => addMore(product._id)}
+                      >
+                        +
+                      </button>
                     </td>
-                    <td>GHS {product.price}</td>
+                    <td>
+                      GHS{" "}
+                      {cartProducts.filter((id) => id === product._id).length *
+                        product.price}
+                    </td>
                   </tr>
                 ))}
               </>
             )}
+            <tr>
+              <td></td>
+              <td></td>
+              <td>GHS {total}</td>
+            </tr>
           </tbody>
         </Table>
       </Box>
       {!!cartProducts.length && (
         <Box>
           <h2>Order Information</h2>
-          <input type="text" placeholder="Address" />
-          <input type="text" placeholder="Mobile Number" />
-          <input type="email" placeholder="Email" />
+          <Input
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            type="text"
+            placeholder="Name"
+          />
+          <Input
+            onChange={(e) => setStreetAddress(e.target.value)}
+            value={streetAddress}
+            type="text"
+            placeholder="Street Address"
+          />
+          <Input
+            onChange={(e) => setLandmark(e.target.value)}
+            value={landmark}
+            type="text"
+            placeholder="Landmark"
+          />
+          <Input
+            onChange={(e) => setMobileNumber(e.target.value)}
+            value={mobileNumber}
+            type="text"
+            placeholder="Mobile Number"
+          />
+          <Input
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            type="email"
+            placeholder="Email"
+          />
           <button className="btn-primary">Continue to payment</button>
         </Box>
       )}

@@ -33,11 +33,12 @@ body {
   color: #c1121f;
   border: 1px solid #c1121f;
   background-color: transparent;
-  padding: 5px;
+  padding: 2px 5px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
   gap: 0.2rem;
+  display: inline-block;
 }
