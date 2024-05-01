@@ -49,7 +49,7 @@ function Page({ params }) {
     axios.get("/api/products?id=" + id).then((resp) => {
       setProductInfo(resp.data);
     });
-  }, []);
+  }, [id]);
   return (
     <Wrapper>
       {productInfo && (
