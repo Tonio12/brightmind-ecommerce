@@ -44,7 +44,7 @@ const QuantityLabel = styled.span`
   padding: 0 3px;
 `;
 
-function page() {
+function Page() {
   const { cartProducts, addProduct, removeProduct, clearCart } =
     usePageContext();
   const [products, setProducts] = useState([]);
@@ -226,4 +226,4 @@ function usePageContext() {
   return contextValue;
 }
 
-export default page;
+export default Page;
