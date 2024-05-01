@@ -1,13 +1,7 @@
 "use client";
 import { styled } from "styled-components";
 import ProductBox from "./ProductBox";
-
-const ProductsGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  padding: 30px 5rem;
-  gap: 40px;
-`;
+import ProductsGrid from "./ProductsGrid";
 
 const Title = styled.h2`
   font-size: 2rem;
@@ -19,11 +13,7 @@ function NewProducts({ products }) {
   return (
     <>
       <Title>New Arrivals</Title>
-      <ProductsGrid>
-        {products.map((product) => (
-          <ProductBox {...product} key={product._id}></ProductBox>
-        ))}
-      </ProductsGrid>
+      <ProductsGrid products={products} />
     </>
   );
 }

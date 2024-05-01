@@ -45,13 +45,15 @@ const QuantityLabel = styled.span`
 `;
 
 function page() {
-  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct, clearCart } =
+    useContext(CartContext);
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
   const [streetAddress, setStreetAddress] = useState("");
   const [landmark, setLandmark] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
     if (cartProducts.length > 0) {
@@ -60,6 +62,13 @@ function page() {
       });
     }
   }, [cartProducts]);
+
+  useEffect(() => {
+    if (window?.location.href.includes("success")) {
+      setIsSuccess(true);
+      clearCart();
+    }
+  });
 
   const addMore = (id) => {
     addProduct(id);
@@ -74,6 +83,35 @@ function page() {
   for (const productId of cartProducts) {
     const price = products.find((p) => p._id === productId)?.price || 0;
     total += price;
+  }
+
+  const goToPayment = async (e) => {
+    e.preventDefault();
+    const response = await axios.post("/api/checkout", {
+      name,
+      cartProducts,
+      email,
+      mobileNumber,
+      landmark,
+      streetAddress,
+    });
+
+    if (response.data) {
+      window.location = response.data;
+    }
+  };
+
+  if (isSuccess) {
+    return (
+      <>
+        <ColumnsWrapper>
+          <Box>
+            <h1>Order Confirmed! Thank You!</h1>
+            <p>We will send a confirmation email when your order is ready</p>
+          </Box>
+        </ColumnsWrapper>
+      </>
+    );
   }
 
   return (
@@ -118,7 +156,7 @@ function page() {
                       </button>
                     </td>
                     <td>
-                      GHS{" "}
+                      ${" "}
                       {cartProducts.filter((id) => id === product._id).length *
                         product.price}
                     </td>
@@ -137,37 +175,46 @@ function page() {
       {!!cartProducts.length && (
         <Box>
           <h2>Order Information</h2>
-          <Input
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            type="text"
-            placeholder="Name"
-          />
-          <Input
-            onChange={(e) => setStreetAddress(e.target.value)}
-            value={streetAddress}
-            type="text"
-            placeholder="Street Address"
-          />
-          <Input
-            onChange={(e) => setLandmark(e.target.value)}
-            value={landmark}
-            type="text"
-            placeholder="Landmark"
-          />
-          <Input
-            onChange={(e) => setMobileNumber(e.target.value)}
-            value={mobileNumber}
-            type="text"
-            placeholder="Mobile Number"
-          />
-          <Input
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            type="email"
-            placeholder="Email"
-          />
-          <button className="btn-primary">Continue to payment</button>
+          <form onSubmit={goToPayment}>
+            <Input
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              name="name"
+              type="text"
+              placeholder="Name"
+            />
+            <Input
+              onChange={(e) => setStreetAddress(e.target.value)}
+              value={streetAddress}
+              name="streetAddress"
+              type="text"
+              placeholder="Street Address"
+            />
+            <Input
+              onChange={(e) => setLandmark(e.target.value)}
+              value={landmark}
+              name="landmark"
+              type="text"
+              placeholder="Landmark"
+            />
+            <Input
+              onChange={(e) => setMobileNumber(e.target.value)}
+              value={mobileNumber}
+              name="mobileNumber"
+              type="text"
+              placeholder="Mobile Number"
+            />
+            <Input
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              name="email"
+              type="email"
+              placeholder="Email"
+            />
+            <button type="submit" className="btn-primary">
+              Continue to payment
+            </button>
+          </form>
         </Box>
       )}
     </ColumnsWrapper>

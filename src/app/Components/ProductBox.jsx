@@ -4,12 +4,13 @@ import { styled } from "styled-components";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
+import { useRouter } from "next/navigation";
 
 const ProductWrapper = styled.div`
   width: 80%;
 `;
 
-const WhiteBox = styled.div`
+const Box = styled.div`
   padding: 20px;
   height: 120px;
   display: flex;
@@ -47,12 +48,13 @@ const Price = styled.div`
 
 export default function ProductBox({ _id, title, description, price, images }) {
   const { addProduct } = useContext(CartContext);
+  const router = useRouter();
 
   return (
     <ProductWrapper>
-      <WhiteBox>
+      <Box onClick={() => router.push(`/product/${_id}`)}>
         <img src={images[0]} alt="" />
-      </WhiteBox>
+      </Box>
       <ProductInfoBox>
         <Title>{title}</Title>
         <PriceRow>
