@@ -46,7 +46,7 @@ const QuantityLabel = styled.span`
 
 function page() {
   const { cartProducts, addProduct, removeProduct, clearCart } =
-    useContext(CartContext);
+    usePageContext();
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
   const [streetAddress, setStreetAddress] = useState("");
@@ -219,6 +219,11 @@ function page() {
       )}
     </ColumnsWrapper>
   );
+}
+
+function usePageContext() {
+  const contextValue = useContext(CartContext);
+  return contextValue;
 }
 
 export default page;

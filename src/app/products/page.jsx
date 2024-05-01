@@ -30,7 +30,6 @@ function page() {
           };
         });
       });
-      console.log(products);
     });
   }, []);
   return (

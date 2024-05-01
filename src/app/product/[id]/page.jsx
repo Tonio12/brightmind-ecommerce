@@ -43,7 +43,7 @@ const PriceRow = styled.div`
 function page({ params }) {
   const id = params.id;
   const [productInfo, setProductInfo] = useState(null);
-  const { addProduct } = useContext(CartContext);
+  const { addProduct } = usePageContext();
 
   useEffect(() => {
     axios.get("/api/products?id=" + id).then((resp) => {
@@ -83,6 +83,11 @@ function page({ params }) {
       )}
     </Wrapper>
   );
+}
+
+function usePageContext() {
+  const contextValue = useContext(CartContext);
+  return contextValue;
 }
 
 export default page;
