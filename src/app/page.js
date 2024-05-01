@@ -11,7 +11,7 @@ export default async function Home() {
       title: product.title,
       description: product.description,
       price: product.price,
-      images: product.images, // Handle images appropriately 
+      images: product.images, // Handle images appropriately
       category: product.category.toString(),
       updatedAt: product.updatedAt.toString(), // Convert date to string
     };
@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <div>
       <Header />
-      <NewProducts products = {...products}/>
+      <NewProducts products={products} />
     </div>
   );
 }
