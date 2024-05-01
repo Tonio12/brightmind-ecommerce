@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   padding: 0 5rem;
 `;
 
-function page() {
+function Page() {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios.get("/api/products").then((response) => {
@@ -40,4 +40,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

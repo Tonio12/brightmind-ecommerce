@@ -40,7 +40,7 @@ const PriceRow = styled.div`
   align-items: center;
 `;
 
-function page({ params }) {
+function Page({ params }) {
   const id = params.id;
   const [productInfo, setProductInfo] = useState(null);
   const { addProduct } = usePageContext();
@@ -90,4 +90,4 @@ function usePageContext() {
   return contextValue;
 }
 
-export default page;
+export default Page;
