@@ -24,9 +24,6 @@ const Box = styled.div`
   }
   @media screen and (max-width: 900px) {
     padding: 2px;
-    img {
-      height: 80px;
-    }
   }
 `;
 
@@ -74,7 +71,7 @@ export default function ProductBox({ _id, title, description, price, images }) {
       <ProductInfoBox>
         <Title>{title}</Title>
         <PriceRow>
-          <Price>GHS {price}</Price>
+          <Price>${price}</Price>
           <button onClick={() => addProduct(_id)} className="btn-secondary">
             <ShoppingCartIcon
               style={{

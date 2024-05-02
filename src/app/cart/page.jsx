@@ -170,7 +170,7 @@ function Page() {
             <tr>
               <td></td>
               <td></td>
-              <td>GHS {total}</td>
+              <td>${total}</td>
             </tr>
           </tbody>
         </Table>
