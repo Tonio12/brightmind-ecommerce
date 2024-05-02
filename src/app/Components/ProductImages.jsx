@@ -18,6 +18,9 @@ const MainImage = styled.img`
 const Image = styled.img`
   height: 50px;
   cursor: pointer;
+  @media screen and (max-width: 900px) {
+    height: 35px;
+  }
 `;
 
 const ImageButtons = styled.div`

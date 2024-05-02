@@ -22,6 +22,12 @@ const Box = styled.div`
     max-width: 100%;
     max-height: 80px;
   }
+  @media screen and (max-width: 900px) {
+    padding: 2px;
+    img {
+      height: 80px;
+    }
+  }
 `;
 
 const Title = styled.h2`

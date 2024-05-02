@@ -159,7 +159,7 @@ function Page() {
                       </button>
                     </td>
                     <td>
-                      ${" "}
+                      $
                       {cartProducts.filter((id) => id === product._id).length *
                         product.price}
                     </td>
