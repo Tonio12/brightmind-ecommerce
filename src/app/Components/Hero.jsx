@@ -12,6 +12,7 @@ const Container = styled.div`
   align-items: center;
   padding: 1rem 5rem;
   @media screen and (max-width: 900px) {
+    padding: 10px 1rem;
     grid-template-columns: 1fr;
   }
 `;

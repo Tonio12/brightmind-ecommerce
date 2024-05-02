@@ -39,11 +39,22 @@ const PriceRow = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: 2px;
+  @media screen and (max-width: 900px) {
+    flex-direction: column;
+    align-items: flex-start;
+    button {
+      width: 100%;
+      gap: 50px;
+    }
+  }
 `;
 
 const Price = styled.div`
   font-size: 1.1rem;
   font-weight: bold;
+  @media screen and (max-width: 900px) {
+    font-size: 1rem;
+  }
 `;
 
 export default function ProductBox({ _id, title, description, price, images }) {

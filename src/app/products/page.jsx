@@ -10,6 +10,9 @@ const Title = styled.h1`
 
 const Wrapper = styled.div`
   padding: 0 5rem;
+  @media screen and (max-width: 900px) {
+    padding: 0 1rem;
+  }
 `;
 
 function Page() {

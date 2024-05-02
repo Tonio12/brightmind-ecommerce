@@ -39,6 +39,6 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  gap: 0.2rem;
   display: inline-block;
+  gap: 50px;
 }

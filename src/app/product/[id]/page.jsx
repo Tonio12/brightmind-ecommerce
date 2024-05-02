@@ -9,6 +9,9 @@ import { CartContext } from "@/app/Components/CartContext";
 
 const Wrapper = styled.div`
   padding: 1rem 5rem;
+  @media screen and (max-width: 900px) {
+    padding: 10px 1rem;
+  }
 `;
 const Title = styled.h1`
   font-size: 1.5rem;
