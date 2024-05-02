@@ -4,6 +4,9 @@ import Hero from "./Hero";
 
 const StyledHeader = styled.header`
   background-color: #003049;
+  @media screen and (max-width: 900px) {
+    margin-top: 25px;
+  }
 `;
 
 export default function Header() {

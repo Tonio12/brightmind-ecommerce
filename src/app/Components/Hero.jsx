@@ -11,12 +11,18 @@ const Container = styled.div`
   justify-items: center;
   align-items: center;
   padding: 1rem 5rem;
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Title = styled.h1`
   margin-bottom: 1rem;
   font-size: 3rem;
   color: #fff;
+  @media screen and (max-width: 900px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Desc = styled.p`
@@ -27,6 +33,13 @@ const HeroButtons = styled.div`
   display: flex;
   gap: 0.5rem;
   margin-top: 0.5rem;
+`;
+
+const StyledImage = styled(Image)`
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    height: 200px;
+  }
 `;
 
 function Hero() {
@@ -49,7 +62,7 @@ function Hero() {
         </HeroButtons>
       </div>
       <div>
-        <Image src={HeroImg} alt="Hero Image" height={400} />
+        <StyledImage src={HeroImg} alt="Hero Image" height={400} />
       </div>
     </Container>
   );
