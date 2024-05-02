@@ -38,7 +38,7 @@ const HeroButtons = styled.div`
 
 const StyledImage = styled(Image)`
   @media screen and (max-width: 900px) {
-    width: 100%;
+    width: 250px;
     height: 200px;
   }
 `;
