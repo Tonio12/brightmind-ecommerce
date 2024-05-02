@@ -22,6 +22,9 @@ const ColWrap = styled.div`
   grid-template-columns: 0.8fr 1.2fr;
   gap: 40px;
   margin-top: 40px;
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Box = styled.div`

@@ -44,7 +44,6 @@ const PriceRow = styled.div`
     align-items: flex-start;
     button {
       width: 100%;
-      gap: 50px;
     }
   }
 `;

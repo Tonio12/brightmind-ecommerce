@@ -13,6 +13,9 @@ const ColumnsWrapper = styled.div`
   gap: 40px;
   padding: 0 5rem;
   margin-top: 50px;
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Box = styled.div`
