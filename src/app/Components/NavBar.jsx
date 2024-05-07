@@ -26,9 +26,8 @@ const Nav = styled.nav`
 const LinkDiv = styled.div`
   display: flex;
   gap: 0.5rem;
-  transition: all 0.3s ease-in-out;
-
   @media screen and (max-width: 900px) {
+    display: ${(props) => (props.$mobileNavActive ? "flex" : "none")};
     flex-direction: column;
     position: fixed;
     top: 0px;
@@ -67,16 +66,12 @@ function NavBar() {
   return (
     <Nav>
       <Logo href="/">Bright Mind</Logo>
-      <LinkDiv mobileNavActive={mobileNavActive}>
-        {mobileNavActive && (
-          <>
-            <NavLink href="/">Home</NavLink>
-            <NavLink href="/products">All Products</NavLink>
-            <NavLink href="/categories">Categories</NavLink>
-            <NavLink href="/account">Account</NavLink>
-            <NavLink href="/cart">Cart ({cartProducts.length})</NavLink>
-          </>
-        )}
+      <LinkDiv $mobileNavActive={mobileNavActive}>
+        <NavLink href="/">Home</NavLink>
+        <NavLink href="/products">All Products</NavLink>
+        <NavLink href="/categories">Categories</NavLink>
+        <NavLink href="/account">Account</NavLink>
+        <NavLink href="/cart">Cart ({cartProducts.length})</NavLink>
       </LinkDiv>
       <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
         <Bars3Icon style={{ height: 30, width: 30, color: "white" }} />
