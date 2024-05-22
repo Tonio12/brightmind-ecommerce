@@ -5,6 +5,8 @@ import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const ProductWrapper = styled.div`
   width: 80%;
@@ -66,13 +68,13 @@ export default function ProductBox({ _id, title, description, price, images }) {
   return (
     <ProductWrapper>
       <Box onClick={() => router.push(`/product/${_id}`)}>
-        <img src={images[0]} alt="" />
+        <Image src={images[0]} alt={title} height={80} width={80} />
       </Box>
       <ProductInfoBox>
         <Title>{title}</Title>
         <PriceRow>
           <Price>${price}</Price>
-          <button onClick={() => addProduct(_id)} className="btn-secondary">
+          <Button onClick={() => addProduct(_id)}>
             <ShoppingCartIcon
               style={{
                 height: "16",
@@ -83,7 +85,7 @@ export default function ProductBox({ _id, title, description, price, images }) {
               }}
             />
             Add to cart
-          </button>
+          </Button>
         </PriceRow>
       </ProductInfoBox>
     </ProductWrapper>

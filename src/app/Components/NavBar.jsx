@@ -7,7 +7,8 @@ import { Bars3Icon } from "@heroicons/react/24/solid";
 
 const Logo = styled(Link)`
   text-decoration: none;
-  color: #fff;
+  color: black;
+  font-size: 14px;
   font-weight: bold;
   @media screen and (max-width: 900px) {
     position: relative;
@@ -20,7 +21,7 @@ const Nav = styled.nav`
   gap: 0.5rem;
   justify-content: space-between;
   padding: 1rem 5rem;
-  background-color: #003049;
+  background: radial-gradient(circle, #87ceeb, #4682b4);
 `;
 
 const LinkDiv = styled.div`
@@ -42,7 +43,11 @@ const LinkDiv = styled.div`
 
 const NavLink = styled(Link)`
   text-decoration: none;
-  color: #fff;
+  color: black;
+  font-size: 14px;
+  &:hover {
+    color: #0056b3;
+  }
   @media screen and (max-width: 900px) {
     padding: 10px 0;
   }

@@ -6,6 +6,7 @@ import { CartContext } from "../Components/CartContext";
 import axios from "axios";
 import Table from "../Components/Table";
 import Input from "../Components/Input";
+import { Button } from "@/components/ui/button";
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -214,9 +215,7 @@ function Page() {
               type="email"
               placeholder="Email"
             />
-            <button type="submit" className="btn-primary">
-              Continue to payment
-            </button>
+            <Button type="submit">Continue to payment</Button>
           </form>
         </Box>
       )}

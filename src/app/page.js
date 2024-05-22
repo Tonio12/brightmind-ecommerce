@@ -12,8 +12,8 @@ export default async function Home() {
       description: product.description,
       price: product.price,
       images: product.images, // Handle images appropriately
-      category: product.category.toString(),
-      updatedAt: product.updatedAt.toString(), // Convert date to string
+      category: JSON.stringify(product.category),
+      updatedAt: product.updatedAt, // Convert date to string
     };
   });
 

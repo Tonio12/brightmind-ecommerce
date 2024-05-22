@@ -11,13 +11,13 @@ export async function GET(request) {
 
     if (id !== null) {
       const productDoc = await Product.findById(id);
-      return NextResponse.json(productDoc);
+      return NextResponse.json(productDoc, { status: 200 });
     }
 
     const products = await Product.find({}, null, {
       sort: { _id: -1 },
     });
-    return NextResponse.json(products);
+    return NextResponse.json(products, { status: 200 });
   } catch (err) {
     return NextResponse.error(err);
   }

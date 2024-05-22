@@ -3,13 +3,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import ProductsGrid from "../Components/ProductsGrid";
+import SearchBar from "../Components/SearchBar";
 
 const Title = styled.h1`
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 5rem;
 `;
 
 const Wrapper = styled.div`
-  padding: 0 5rem;
   @media screen and (max-width: 900px) {
     padding: 0 1rem;
   }
@@ -28,8 +30,8 @@ function Page() {
             description: product.description,
             price: product.price,
             images: product.images, // Handle images appropriately
-            category: product.category.toString(),
-            updatedAt: product.updatedAt.toString(), // Convert date to string
+            category: product.category,
+            updatedAt: product.updatedAt,
           };
         });
       });
@@ -37,6 +39,7 @@ function Page() {
   }, []);
   return (
     <Wrapper>
+      <SearchBar />
       <Title>All Products</Title>
       {products.length > 0 && <ProductsGrid products={products} />}
     </Wrapper>
