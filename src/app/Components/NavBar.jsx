@@ -22,6 +22,9 @@ const Nav = styled.nav`
   justify-content: space-between;
   padding: 1rem 5rem;
   background: radial-gradient(circle, #87ceeb, #4682b4);
+  @media screen and (max-width: 900px) {
+    padding: 10px 20px;
+  }
 `;
 
 const LinkDiv = styled.div`
@@ -30,14 +33,15 @@ const LinkDiv = styled.div`
   @media screen and (max-width: 900px) {
     display: ${(props) => (props.$mobileNavActive ? "flex" : "none")};
     flex-direction: column;
-    position: fixed;
-    top: 0px;
-    buttom: 0;
-    left: 0rem;
+    z-index: 99;
+    position: absolute;
+    top: 0;
     right: 0;
-    padding: 50px 5rem;
+    padding: 50px 50px;
     background-color: #003049;
     transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
   }
 `;
 
@@ -50,6 +54,7 @@ const NavLink = styled(Link)`
   }
   @media screen and (max-width: 900px) {
     padding: 10px 0;
+    color: white;
   }
 `;
 
@@ -61,7 +66,7 @@ const NavButton = styled.button`
   @media screen and (max-width: 900px) {
     display: inline-block;
     position: relative;
-    z-index: 3;
+    z-index: 100;
   }
 `;
 

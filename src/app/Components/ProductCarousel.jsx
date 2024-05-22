@@ -14,7 +14,7 @@ const ProductCarousel = ({ products }) => {
   return (
     <Carousel showThumbs={false} autoPlay infiniteLoop>
       {products.map((product, index) => (
-        <div key={product._id} className="h-[70vh] relative">
+        <div key={product._id} className="h-[90vh] relative max-md:h-[50vh]">
           {product.title === "Pepsi" ? (
             <Image src={pepsi} alt={product.name} fill />
           ) : product.title === "Guinness" ? (
